@@ -1,0 +1,54 @@
+﻿@*
+This View Contains basic Knockout examples like Binding, Observable, Computed, Subscribe and KeyUp/ValueUpdate as follows:
+https://www.youtube.com/playlist?list=PLzpzty4VRTPfbao0m8oADCmBD5BmWM4rT
+Videos = Part 1 to 4
+*@
+
+
+<p>
+    <br />
+    First Name : <span data-bind="text: FirstName"></span>
+    <br />
+    <input type="text" data-bind="value: FirstName, valueUpdate: 'keyup'" />
+    <br />
+    <br />
+    Middle Name : <span data-bind="text: MiddleName"></span>
+    <br />
+    <input type="text" data-bind="value: MiddleName, valueUpdate: 'keyup'" />
+    <br />
+    <br />
+    Last Name : <span data-bind="text: LastName"></span>
+    <br />
+    <input type="text" data-bind="value: LastName, valueUpdate: 'keyup'" />
+    <br />
+    <br />
+    Full Name : <span style="text-decoration:underline" data-bind="text: FullName"></span>
+
+</p>
+
+<script>
+
+    var obj = {
+        FirstName: ko.observable('Mohit'),
+        MiddleName: ko.observable('Lalitkumar'),
+        LastName: ko.observable('Chauhan')
+    }
+
+    obj.FullName = ko.computed(function () {
+        return obj.FirstName() + ' ' + obj.MiddleName() + ' ' + obj.LastName()
+    });
+
+    obj.FirstName.subscribe(function (firstnamevalue) {
+        console.log('FirstName changed to ' + firstnamevalue)
+    });
+
+    obj.MiddleName.subscribe(function (middlenamevalue) {
+        console.log('MiddleName changed to ' + middlenamevalue)
+    });
+
+    obj.LastName.subscribe(function (lastnamevalue) {
+        console.log('LastName changed to ' + lastnamevalue)
+    });
+
+    ko.applyBindings(obj);
+</script>

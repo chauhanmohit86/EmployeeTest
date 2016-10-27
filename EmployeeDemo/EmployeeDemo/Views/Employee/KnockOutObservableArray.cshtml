@@ -1,0 +1,39 @@
+﻿@*
+This View Contains basic Knockout examples like Binding, Observable, Computed, Subscribe and KeyUp/ValueUpdate as follows:
+https://www.youtube.com/playlist?list=PLzpzty4VRTPfbao0m8oADCmBD5BmWM4rT
+Videos = Part 5
+*@
+
+@{
+    ViewBag.Title = "KnockOutObservableArray";
+}
+
+<h2>KnockOutObservableArray</h2>
+
+<ul data-bind="foreach:members">
+    <li> <span data-bind="text:membername"></span></li>
+    <li> <span data-bind="text:membersalary"></span></li>
+</ul>
+
+<ul data-bind="foreach: companies">
+    <li> <span data-bind="text: company"></span></li>
+</ul>
+
+<script>
+
+    function FamilyMember(membername, membsal) {
+        this.membername = membername;
+        this.membersalary = membsal;
+    }
+
+    function Organization(company){
+        this.company = company;
+    }
+    
+    var members = ko.observableArray([new FamilyMember('Mohit', '100'), new FamilyMember('Hardik', '200'), new FamilyMember('Lalitbhai', '500')])
+    var companies = ko.observableArray([new Organization('Microsoft'), new Organization('Google'), new Organization('Apple')])
+
+    //ko.applyBindings(members);
+    ko.applyBindings();
+
+</script>

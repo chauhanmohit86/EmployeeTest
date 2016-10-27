@@ -1,0 +1,113 @@
+﻿@using System.Web.Script.Serialization
+@model IEnumerable<EmployeeBusiness.EmployeeViewModel>
+
+<h2>EmployeeDashboard</h2>
+<br /><br />
+<table>
+    <tr></tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.EmpName)
+        </td>
+        <td>
+            @Html.DropDownList("empNames", ViewData["empNames"] as List<SelectListItem>, new { data_bind = "value: model.empName" })
+        </td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.Gender)
+        </td>
+        <td>
+            @Html.DropDownList("empSex", ViewData["empSex"] as List<SelectListItem>)
+        </td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.City)
+        </td>
+        <td>
+            @Html.DropDownList("empCity", ViewData["empCity"] as List<SelectListItem>)
+        </td>
+    </tr>
+</table>
+<br />
+<br />
+<br />
+<table>
+    <tr>
+        <th style="width: 10%">
+            @Html.DisplayNameFor(model => model.EmpId)
+        </th>
+        <th style="width: 20%">
+            @Html.DisplayNameFor(model => model.EmpName)
+        </th>
+        <th style="width: 15%">
+            @Html.DisplayNameFor(model => model.EmpSalary)
+        </th>
+        <th style="width: 10%">
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th style="width: 20%">
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th style="width: 15%">
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+    </tr>
+
+    @*@foreach (var item in Model)
+    {*@
+    <tr data-bind="foreach: pageModel">
+            <td style="width: 10%">
+                <div data-bind="text: EmpId"></div>
+                @*@Html.DisplayFor(m => EmpId)*@
+            </td>
+            <td style="width: 20%">
+                <div data-bind="text: EmpName"></div>
+                @*@Html.DisplayFor(m => item.EmpName)*@
+            </td>
+            <td style="width: 15%">
+                <div data-bind="text: EmpSalary"></div>
+                @*@Html.DisplayFor(m => item.EmpSalary)*@
+            </td>
+            <td style="width: 10%">
+                <div data-bind="text: Age"></div>
+                @*@Html.DisplayFor(m => item.Age)*@
+            </td>
+            <td style="width: 20%">
+                <div data-bind="text: City"></div>
+                @*@Html.DisplayFor(m => item.City)*@
+            </td>
+            <td style="width: 15%">
+                <div data-bind="text: Gender"></div>
+                @*@Html.DisplayFor(m => item.Gender)*@
+            </td>
+            @*<td style="width: 10%">@Html.ActionLink("Delete", "removeEmployee", item)</td>*@
+        </tr>
+    @*}*@
+
+
+
+</table>
+
+<script>
+    $(document).ready(function(){
+        var self = this;
+        var pageModel = @Html.Raw(new JavaScriptSerializer().Serialize(Model));
+        debugger;
+        var pageData = window.pageModel;
+
+        //self.records = ko.observableArray($.parseJSON(model));
+        //self.filteredRecords = ko.observableArray($.parseJSON(model));
+        //self.namesearch = ko.observable(pageData.EmpName == null ? '' : pageData.EmpName);
+
+
+
+    });
+
+    ko.applyBindings();
+
+
+</script>
